@@ -1,0 +1,18 @@
+task：根据法律文书，预测文书是否属于 “多辆机动车致人伤害”  ，就是一个二分类
+corpus： pos正类 ，neg 负类
+
+standard_TextPreprocess.py
+	一个标准的nlp文本预处理流程
+
+standard_train_cross_validation.py
+	1、由于xgboost分类效果更好，所以我运用了xgboost，且一步一步优化参数。
+	2、模型输入为tfidf，我也尝试用gensim来训练word2vec，但样本太少，效果特别差
+	3、xgboost 的二分类与多分类，评价指标不一样。代码中有
+	   自定义二分类方法 modelfit_two_classification，metrics='auc'，评价标准auc只适合二分类，metrics需要进一步研究。
+	   自定义多分类方法 modelfit_MultiClassEvaluation，metrics='mlogloss'
+
+xgboost调优参考如下网址：
+  https://blog.csdn.net/u010657489/article/details/51952785
+  https://blog.csdn.net/u010665216/article/details/78532619?utm_source=debugrun&utm_medium=referral
+
+
